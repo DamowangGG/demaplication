@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment"
+    android:orientation="vertical">
+
+    <cn.mtjsoft.www.gridviewpager_recycleview.GridViewPager
+        android:id="@+id/gridviewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:pager_MarginTop="10dp"
+        app:pager_MarginBottom="0dp"
+        app:verticalSpacing="10dp"
+        app:img_width="44dp"
+        app:img_height="44dp"
+        app:text_color="#ffffff"
+        app:text_size="12sp"
+        app:imgtext_margin="5dp"
+        app:row_count="2"
+        app:column_count="4"
+        app:pager_loop="true"
+        app:point_is_show="true"
+        app:point_width="15dp"
+        app:point_height="2dp"
+        app:point_is_circle="false"
+        app:point_margin="2dp"
+        app:point_normal_color="#FFFFFF"
+        app:point_select_color="#f00"
+        app:point_margin_page="10dp"
+        app:point_margin_bottom="10dp"
+        app:background_color="#FFFFFF">
+    </cn.mtjsoft.www.gridviewpager_recycleview.GridViewPager>
+
+    <cn.mtjsoft.www.gridviewpager_recycleview.GridViewPager
+        android:id="@+id/gridviewpager2"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </cn.mtjsoft.www.gridviewpager_recycleview.GridViewPager>
+</LinearLayout>
