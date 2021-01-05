@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.zejian.myapplication.base.BaseActivity
 import com.zejian.myapplication.emoji.EmojiActivity
 import com.zejian.myapplication.taluo.VP2Activity
+import com.zejian.myapplication.ui.loading.Loading
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -27,7 +28,8 @@ class MainActivity : BaseActivity() {
         }
 
         button2.setOnClickListener {
-            NotificationUtil.getInstance().send("1235","peter",bitmap2)
+//            NotificationUtil.getInstance().send("1235","peter",bitmap2)
+            Loading(this).setMessage("加载中").show()
         }
 
         button3.setOnClickListener {

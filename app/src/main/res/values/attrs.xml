@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="Switch">
+        <attr name="checked" format="reference|boolean"/>
+        <attr name="switchOnColor" format="reference|color"/>
+        <attr name="switchOffColor" format="reference|color"/>
+        <attr name="spotOnColor" format="reference|color"/>
+        <attr name="spotOnColorIn" format="reference|color"/>
+        <attr name="spotOffColor" format="reference|color"/>
+        <attr name="spotOffColorIn" format="reference|color"/>
+        <attr name="switchOnStrokeColor" format="reference|color"/>
+        <attr name="switchOffStrokeColor" format="reference|color"/>
+        <attr name="spotPadding" format="reference|dimension"/>
+        <attr name="duration" format="reference|integer" />
+    </declare-styleable>
+
+
+
+    <style name="LoadingDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+</resources>
