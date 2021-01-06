@@ -1,10 +1,18 @@
 package com.zejian.myapplication
 
+import android.Manifest
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
+import com.blankj.utilcode.constant.PermissionConstants
+import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.PermissionUtils
+import com.blankj.utilcode.util.SnackbarUtils
 import com.zejian.myapplication.base.BaseActivity
 import com.zejian.myapplication.emoji.EmojiActivity
+import com.zejian.myapplication.permission.PermissionHelper
+import com.zejian.myapplication.swipecard.TanTanActivity
 import com.zejian.myapplication.taluo.VP2Activity
 import com.zejian.myapplication.ui.loading.Loading
 import kotlinx.android.synthetic.main.activity_main.*
@@ -42,5 +50,96 @@ class MainActivity : BaseActivity() {
         button5.setOnClickListener {
             startActivity(Intent(this,VP2Activity::class.java))
         }
+        button6.setOnClickListener { startActivity(Intent(this,TanTanActivity::class.java)) }
+
+
+        permissionFun()
+
     }
+
+    private fun permissionFun() {
+        rationale.setOnClickListener {
+            PermissionUtils.permissionGroup(PermissionConstants.MICROPHONE)
+                .rationale { activity, shouldRequest -> PermissionHelper.showRationaleDialog(activity, shouldRequest) }
+                .callback(object : PermissionUtils.FullCallback {
+                    override fun onGranted(permissionsGranted: List<String>) {
+                        LogUtils.d(permissionsGranted)
+                        showSnackbar(true, "Microphone is granted")
+                    }
+
+                    override fun onDenied(permissionsDeniedForever: List<String>,
+                                          permissionsDenied: List<String>) {
+                        LogUtils.d(permissionsDeniedForever, permissionsDenied)
+                        if (permissionsDeniedForever.isNotEmpty()) {
+                            showSnackbar(false, "Microphone is denied forever")
+                        } else {
+                            showSnackbar(false, "Microphone is denied")
+                        }
+                    }
+                })
+                .request()
+        }
+        explain.setOnClickListener {
+
+        }
+        WriteSettings.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                PermissionUtils.requestWriteSettings(object : PermissionUtils.SimpleCallback {
+                    override fun onGranted() {
+                        showSnackbar(true, "Write Settings is granted")
+                    }
+
+                    override fun onDenied() {
+                        showSnackbar(false, "Write Settings is denied")
+                    }
+                })
+            }
+        }
+        singlePermission.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                PermissionUtils.requestDrawOverlays(object : PermissionUtils.SimpleCallback {
+                    override fun onGranted() {
+                        showSnackbar(true, "Draw Overlays is granted")
+                    }
+
+                    override fun onDenied() {
+                        showSnackbar(false, "Draw Overlays is denied")
+                    }
+                })
+            }
+        }
+        doublePermission.setOnClickListener {
+            PermissionUtils.permission(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
+                //before request
+                .explain { activity, denied, shouldRequest -> PermissionHelper.showExplainDialog(activity, denied, shouldRequest) }
+                .callback { isAllGranted, granted, deniedForever, denied ->
+                    LogUtils.d(granted, deniedForever, denied)
+                    if (isAllGranted) {
+                        showSnackbar(true, "Calendar and Microphone are granted")
+                        return@callback
+                    }
+                    if (deniedForever.isNotEmpty()) {
+                        showSnackbar(false, "Calendar or Microphone is denied forever")
+                    } else {
+                        showSnackbar(false, "Calendar or Microphone is denied")
+                    }
+                }
+                .request()
+        }
+    }
+
+
+    private fun showSnackbar(isSuccess: Boolean, msg: String) {
+        SnackbarUtils.with(l1)
+            .setDuration(SnackbarUtils.LENGTH_LONG)
+            .setMessage(msg)
+            .apply {
+                if (isSuccess) {
+                    showSuccess()
+                } else {
+                    showError()
+                }
+            }
+    }
+
 }
