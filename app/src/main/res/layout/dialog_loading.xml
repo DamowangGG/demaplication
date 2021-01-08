@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardElevation="0dp"
+        app:cardElevation="1dp"
         app:cardCornerRadius="15dp"
         android:layout_marginBottom="18dp"
         android:layout_marginStart="18dp"
@@ -33,17 +33,32 @@
                 android:textColor="#333333"
                 android:textSize="16.5sp"/>
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:layout_gravity="center_horizontal"
-                android:indeterminateBehavior="repeat"
-                android:indeterminateDuration="1000"
-                android:rotation="-90"
-                android:interpolator="@android:anim/linear_interpolator"
-                android:indeterminateDrawable="@drawable/progressbar"
-                android:indeterminateOnly="true" />
+            <FrameLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+                <com.zejian.myapplication.ui.loading.WrongDiaView
+                    android:id="@+id/wrongView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"/>
+                <com.zejian.myapplication.ui.loading.RightDiaView
+                    android:id="@+id/successView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"/>
+                <com.zejian.myapplication.ui.loading.animation.SpinKitView
+                    android:id="@+id/spin_kit"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:indeterminateBehavior="repeat"
+                    android:indeterminateDuration="1000"
+                    style="@style/SpinKitView.Circle"
+                    app:SpinKit_Color="#555555"
+                    android:rotation="-90"
+                    android:interpolator="@android:anim/linear_interpolator"
+                    android:indeterminateOnly="true" />
+            </FrameLayout>
 
         </LinearLayout>
 

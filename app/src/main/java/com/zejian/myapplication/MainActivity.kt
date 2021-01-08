@@ -5,10 +5,13 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.PermissionUtils
 import com.blankj.utilcode.util.SnackbarUtils
+import com.zejian.myapplication.anima.Techniques
+import com.zejian.myapplication.anima.YoYo
 import com.zejian.myapplication.base.BaseActivity
 import com.zejian.myapplication.emoji.EmojiActivity
 import com.zejian.myapplication.permission.PermissionHelper
@@ -18,6 +21,8 @@ import com.zejian.myapplication.ui.loading.Loading
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
+
+    val mHandler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +38,8 @@ class MainActivity : BaseActivity() {
 
         button1.setOnClickListener {
             NotificationUtil.getInstance().send("1234","Andy",bitmap1)
+            YoYo.with(Techniques.Shake)
+                .duration(600).playOn(button1)
         }
 
         button2.setOnClickListener {
@@ -52,7 +59,24 @@ class MainActivity : BaseActivity() {
         }
         button6.setOnClickListener { startActivity(Intent(this,TanTanActivity::class.java)) }
 
-
+        loading.setOnClickListener {
+            val dialog = Loading(this)
+            dialog.showLoading()
+        }
+        success.setOnClickListener {
+            val dialog = Loading(this)
+            dialog.showLoading()
+            mHandler.postDelayed({
+                dialog.showSuccess("上传成功")
+            },3000)
+        }
+        wrong.setOnClickListener {
+            val dialog = Loading(this)
+            dialog.showLoading()
+            mHandler.postDelayed({
+                dialog.showError("加载失败")
+            },3000)
+        }
         permissionFun()
 
     }
