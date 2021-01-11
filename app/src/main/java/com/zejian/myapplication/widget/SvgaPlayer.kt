@@ -43,22 +43,20 @@ class SvgaPlayer  constructor(context: Context) {
         }
     }
 
-
-    fun play(url:String){
+    fun play(any:String){
         svgaView?.let {
             if(prepareOrPlaying){
-                playList.add(url)
+                playList.add(any)
             }else{
                 prepareOrPlaying = true
-                if (url.startsWith("http://") || url.startsWith("https://")) {
-                    parser.decodeFromURL(URL(url), parseCompletion)
+                if (any.startsWith("http://") || any.startsWith("https://")) {
+                    parser.decodeFromURL(URL(any), parseCompletion)
                 } else {
-                    parser.decodeFromAssets(url, parseCompletion)
+                    parser.decodeFromAssets(any, parseCompletion)
                 }
             }
         }
     }
-
 
     private val parseCompletion = object : SVGAParser.ParseCompletion {
         override fun onComplete(videoItem: SVGAVideoEntity) {
@@ -77,7 +75,6 @@ class SvgaPlayer  constructor(context: Context) {
         }
     }
 
-
     fun stopAnimation(){
         svgaView?.let {
             playList.clear()
@@ -85,14 +82,9 @@ class SvgaPlayer  constructor(context: Context) {
         }
     }
 
-
     public fun cancel(){
         stopAnimation()
     }
 
-
-    companion object{
-
-    }
 
 }
