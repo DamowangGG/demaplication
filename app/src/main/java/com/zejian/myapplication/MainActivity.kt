@@ -18,11 +18,13 @@ import com.zejian.myapplication.permission.PermissionHelper
 import com.zejian.myapplication.swipecard.TanTanActivity
 import com.zejian.myapplication.taluo.VP2Activity
 import com.zejian.myapplication.ui.loading.Loading
+import com.zejian.myapplication.widget.SvgaPlayer
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
     val mHandler = Handler()
+    val mPlayer:SvgaPlayer by lazy { SvgaPlayer(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +60,12 @@ class MainActivity : BaseActivity() {
             startActivity(Intent(this,VP2Activity::class.java))
         }
         button6.setOnClickListener { startActivity(Intent(this,TanTanActivity::class.java)) }
-
+        button7.setOnClickListener {
+            mPlayer.setImageView(animateView)
+            repeat(6){
+                mPlayer.play("http://s-y.oss-cn-hangzhou.aliyuncs.com/s-y/gift/91b9afc2-c62e-45bf-8db3-9aacbc413962.svga")
+            }
+        }
         loading.setOnClickListener {
             val dialog = Loading(this)
             dialog.showLoading()
