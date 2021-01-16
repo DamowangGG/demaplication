@@ -73,4 +73,11 @@ dependencies {
 //    implementation  'com.scwang.smart:refresh-footer-classics:2.0.2'    //经典加载
 
     implementation 'com.github.yyued:SVGAPlayer-Android:2.5.12'
+    implementation 'com.lxj:xpopup:2.2.13'
+
+    implementation 'net.mikaelzero.mojito:core:1.5.6'
+//support long image and gif with Sketch
+    implementation 'net.mikaelzero.mojito:SketchImageFactory:1.5.6'
+//load with glide
+    implementation 'net.mikaelzero.mojito:GlideImageLoader:1.5.6'
 }
