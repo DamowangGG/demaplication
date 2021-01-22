@@ -13,7 +13,6 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.lxj.xpopup.interfaces.XPopupImageLoader;
 import com.zejian.myapplication.widget.pyq.MomentImage;
-import com.zejian.myapplication.widget.pyq.MomentView;
 
 import java.io.File;
 

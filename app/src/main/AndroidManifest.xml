@@ -18,7 +18,6 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
-    
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -27,7 +26,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".swipecard.TanTanActivity"></activity>
+        <activity android:name=".ui.GoogleRocketActivity"></activity>
+        <activity
+            android:name=".MotionActivity"
+            android:label="@string/title_activity_motion"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".swipecard.TanTanActivity" />
         <activity android:name=".pagerRefresh.PageRefreshActivity" />
         <activity
             android:name=".taluo.VP2Activity"

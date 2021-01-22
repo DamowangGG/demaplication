@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar" >
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -18,12 +18,6 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-
-
-
-
-
-
     <style name="SpinKitView">
         <item name="android:indeterminateOnly">true</item>
         <item name="android:minWidth">48dip</item>
@@ -31,9 +25,11 @@
         <item name="android:minHeight">48dip</item>
         <item name="android:maxHeight">48dip</item>
     </style>
+
     <style name="SpinKitView.Circle">
         <item name="SpinKit_Style">Circle</item>
     </style>
+
     <style name="SpinKitView.FadingCircle">
         <item name="SpinKit_Style">FadingCircle</item>
     </style>

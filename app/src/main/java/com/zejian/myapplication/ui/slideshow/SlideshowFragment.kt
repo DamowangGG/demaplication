@@ -36,7 +36,6 @@ class SlideshowFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recyclerView.setHasFixedSize(false)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = MomentAdapter(mutableListOf())
     }
 
 

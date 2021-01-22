@@ -17,6 +17,8 @@ import com.zejian.myapplication.emoji.EmojiActivity
 import com.zejian.myapplication.permission.PermissionHelper
 import com.zejian.myapplication.swipecard.TanTanActivity
 import com.zejian.myapplication.taluo.VP2Activity
+import com.zejian.myapplication.ui.GoogleRocketActivity
+import com.zejian.myapplication.ui.ScrollingActivity
 import com.zejian.myapplication.ui.loading.Loading
 import com.zejian.myapplication.widget.SvgaPlayer
 import kotlinx.android.synthetic.main.activity_main.*
@@ -67,8 +69,7 @@ class MainActivity : BaseActivity() {
             }
         }
         loading.setOnClickListener {
-            val dialog = Loading(this)
-            dialog.showLoading()
+            startActivity(Intent(this,ScrollingActivity::class.java))
         }
         success.setOnClickListener {
             val dialog = Loading(this)
@@ -77,12 +78,11 @@ class MainActivity : BaseActivity() {
                 dialog.showSuccess("上传成功")
             },3000)
         }
-        wrong.setOnClickListener {
-            val dialog = Loading(this)
-            dialog.showLoading()
-            mHandler.postDelayed({
-                dialog.showError("加载失败")
-            },3000)
+        motionLayout.setOnClickListener {
+            startActivity(Intent(this,MotionActivity::class.java))
+        }
+        googleRocket.setOnClickListener {
+            startActivity(Intent(this,GoogleRocketActivity::class.java))
         }
         permissionFun()
 

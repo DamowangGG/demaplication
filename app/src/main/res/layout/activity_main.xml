@@ -158,15 +158,23 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <Button
-            android:id="@+id/wrong"
+            android:id="@+id/motionLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="wrong"
+            android:text="motionLayout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
+        <Button
+            android:id="@+id/googleRocket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="googleRocket"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
     <com.opensource.svgaplayer.SVGAImageView
