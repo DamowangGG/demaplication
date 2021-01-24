@@ -26,7 +26,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.GoogleRocketActivity"></activity>
+        <activity android:name=".ui.Main234Activity"></activity>
+        <activity android:name=".ui.UserActivity" />
+        <activity android:name=".ui.GoogleRocketActivity" />
         <activity
             android:name=".MotionActivity"
             android:label="@string/title_activity_motion"
