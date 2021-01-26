@@ -74,7 +74,7 @@ dependencies {
 
     implementation 'com.github.yyued:SVGAPlayer-Android:2.5.12'
     implementation 'com.lxj:xpopup:2.2.13'
-
+    implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'net.mikaelzero.mojito:core:1.5.6'
 //support long image and gif with Sketch
     implementation 'net.mikaelzero.mojito:SketchImageFactory:1.5.6'
