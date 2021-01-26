@@ -19,6 +19,7 @@ import com.zejian.myapplication.swipecard.TanTanActivity
 import com.zejian.myapplication.taluo.VP2Activity
 import com.zejian.myapplication.ui.GoogleRocketActivity
 import com.zejian.myapplication.ui.ScrollingActivity
+import com.zejian.myapplication.ui.UserActivity
 import com.zejian.myapplication.ui.loading.Loading
 import com.zejian.myapplication.widget.SvgaPlayer
 import kotlinx.android.synthetic.main.activity_main.*
@@ -69,7 +70,7 @@ class MainActivity : BaseActivity() {
             }
         }
         loading.setOnClickListener {
-            startActivity(Intent(this,ScrollingActivity::class.java))
+            startActivity(Intent(this,UserActivity::class.java))
         }
         success.setOnClickListener {
             val dialog = Loading(this)

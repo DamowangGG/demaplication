@@ -15,7 +15,11 @@
         <attr name="duration" format="reference|integer" />
     </declare-styleable>
 
-
+    <declare-styleable name="CutoutImage">
+        <attr name="bottomCut" format="dimension" />
+        <attr name="endCut" format="dimension" />
+        <attr name="cutoutColor" format="color" />
+    </declare-styleable>
 
     <style name="LoadingDialog" parent="android:style/Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
