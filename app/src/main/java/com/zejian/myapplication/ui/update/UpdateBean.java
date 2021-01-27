@@ -7,6 +7,10 @@ public class UpdateBean {
     private String updateMsg;
     private boolean force;
 
+    public UpdateBean(){
+
+    }
+
     public String getServerVersionCode() {
         return serverVersionCode;
     }

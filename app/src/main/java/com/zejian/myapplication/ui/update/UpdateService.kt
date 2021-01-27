@@ -62,25 +62,25 @@ class UpdateService: Service() {
     fun installApp(file: File) {
         //下载完成
         val res = UpdateManager.installApp(this, file)
-        if (res) {
-            if (showNotify && mNotificationManager != null) {
-                mNotificationManager!!.cancel(NotificationUtil.NOTIFICATION_ID_UPDATE)
-            }
-            stopSelf()
-        } else if (showNotify) {
-            val installAppIntent = UpdateManager.getInstallAppIntent(this, file)
-            val contentIntent = PendingIntent.getActivity(this, 0,
-                installAppIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-            mBuilder!!.setContentIntent(contentIntent)
-                .setContentTitle("音麦")
-                .setContentText("下载完成，点击安装更新")
-                .setProgress(0, 0, false)
-                .setAutoCancel(true)
-                .setDefaults(Notification.DEFAULT_ALL)
-            val notification = mBuilder!!.build()
-            notification.flags = Notification.FLAG_AUTO_CANCEL
-            mNotificationManager!!.notify(NotificationUtil.NOTIFICATION_ID_UPDATE, notification)
-        }
+//        if (res) {
+//            if (showNotify && mNotificationManager != null) {
+//                mNotificationManager!!.cancel(NotificationUtil.NOTIFICATION_ID_UPDATE)
+//            }
+//            stopSelf()
+//        } else if (showNotify) {
+//            val installAppIntent = UpdateManager.getInstallAppIntent(this, file)
+//            val contentIntent = PendingIntent.getActivity(this, 0,
+//                installAppIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+//            mBuilder!!.setContentIntent(contentIntent)
+//                .setContentTitle("音麦")
+//                .setContentText("下载完成，点击安装更新")
+//                .setProgress(0, 0, false)
+//                .setAutoCancel(true)
+//                .setDefaults(Notification.DEFAULT_ALL)
+//            val notification = mBuilder!!.build()
+//            notification.flags = Notification.FLAG_AUTO_CANCEL
+//            mNotificationManager!!.notify(NotificationUtil.NOTIFICATION_ID_UPDATE, notification)
+//        }
     }
 
 

@@ -35,11 +35,11 @@
     </style>
 
 
-    <style name="UpdateAppDialog" parent="android:style/Theme.Dialog">
+    <style name="AppUpdateTheme" parent="android:style/Theme.Dialog">
         <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowCloseOnTouchOutside">false</item>
     </style>
 
 

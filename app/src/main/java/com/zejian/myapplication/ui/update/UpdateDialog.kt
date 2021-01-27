@@ -1,4 +1,4 @@
-package me.yinmai.yidui.main.update
+package com.zejian.myapplication.ui.update
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,79 +7,80 @@ import android.os.Bundle
 import android.text.Html
 import android.view.*
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.blankj.utilcode.util.ScreenUtils
-import com.blankj.utilcode.util.SizeUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.zejian.myapplication.R
-import com.zejian.myapplication.ui.update.DownLoadProgress
-import com.zejian.myapplication.ui.update.UpdateManager
-import com.zejian.myapplication.ui.update.UpdateService
-import kotlinx.android.synthetic.main.dialog_update.*
+import kotlinx.android.synthetic.main.dialog_app_update.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-/**
- * A simple [Fragment] subclass.
- */
-class UpdateDialogFragment : DialogFragment() {
 
-    private var isConstraint = false
-    private var updateMsg: String? = null
-    private var remoteVersion = 0
+class UpdateDialog : DialogFragment() {
 
+    private var isForce = false
+    var updateBean:UpdateBean? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.dialog_update, container)
+        return inflater.inflate(R.layout.dialog_app_update, container)
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(STYLE_NO_TITLE, R.style.UpdateAppDialog)
+        setStyle(STYLE_NO_TITLE, R.style.AppUpdateTheme)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.let {
+            it.setCanceledOnTouchOutside(false)
+            it.setOnKeyListener { _, keyCode, _ ->
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    false
+                } else false
+            }
+            dialog?.window?.let { wd->
+                wd.setGravity(Gravity.CENTER)
+                val lp = wd.attributes
+                lp.width = ScreenUtils.getScreenWidth()
+                wd.attributes = lp
+            }
+        }
     }
 
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val versionBean = AppConfig.getVersionInfo()
-        if (versionBean == null) {
+        if (updateBean == null) {
             dismiss()
             return
         }
-        updateMsg = versionBean.message
-        if (versionBean.must == 1) { //强制更新
-            isConstraint = true
-        } else {
-            isConstraint = false
-            dialog!!.setCanceledOnTouchOutside(false)
+        updateBean?.let {
+            if(it.isForce){
+                isForce = true
+                isCancelable = false
+                btCancel.visibility = View.GONE
+                dialog?.setCanceledOnTouchOutside(false)
+            }
+            btCancel.text = "稍后再说"
+            tvVersion.text = "v${it.serverVersionName}"
+            tvUpdateContent.text = Html.fromHtml(it.updateMsg)
+            tvTitle.text = "v${it.serverVersionName}"
+            val file = UpdateManager.getInstallApkPath(requireContext())
+            if (file != null && file.exists()) {
+                btOk.text = "开始安装"
+            }
         }
 
-        btCancel.text = "暂不升级"
-        tvVersion.text = "v" + versionBean.versions
-        tvUpdateContent.text = Html.fromHtml(updateMsg)
-        //标题
-        tvTitle.text = "V" + versionBean.versions + "更新内容"
-        //强制更新
-        if (isConstraint) {
-            btCancel.visibility = View.GONE
-        }
-
-        val file = UpdateManager.getInstallApkPath(context)
-        if (file != null && file.exists()) {
-            btOk.text = "开始安装"
-        }
-
-        btOk.click {
+        btOk.setOnClickListener {
             context?.let {
                 val apkFile = UpdateManager.getInstallApkPath(it)
                 if (apkFile != null && apkFile.exists()) {
                     val res = UpdateManager.installApp(this, apkFile)
                     if (res) {
-                        if (!isConstraint) {
+                        if (!isForce) {
                             dismiss()
                         }
                     } else {
@@ -96,7 +97,6 @@ class UpdateDialogFragment : DialogFragment() {
         }
 
         btCancel.setOnClickListener {
-            AppConfig.INSTANCE.lastRemindVersion = remoteVersion
             dismiss()
         }
         EventBus.getDefault().register(this)
@@ -117,7 +117,7 @@ class UpdateDialogFragment : DialogFragment() {
             tvProgress.text = "0%"
             layoutProgress.visibility = View.GONE
             btOk.visibility = View.VISIBLE
-            if (isConstraint) {
+            if (isForce) {
                 btCancel.visibility = View.GONE
             } else {
                 btCancel.visibility = View.VISIBLE
@@ -132,7 +132,7 @@ class UpdateDialogFragment : DialogFragment() {
             layoutProgress.visibility = View.GONE
             btOk.visibility = View.VISIBLE
             btOk.text = "安装"
-            if (isConstraint) {
+            if (isForce) {
                 btCancel.visibility = View.GONE
             } else {
                 btCancel.visibility = View.VISIBLE
@@ -156,28 +156,6 @@ class UpdateDialogFragment : DialogFragment() {
         }
     }
 
-
-    override fun onStart() {
-        super.onStart()
-        //点击window外的区域 是否消失
-        context?.let { mContext->
-            dialog?.let {
-                it.setCanceledOnTouchOutside(false)
-                it.setOnKeyListener { _, keyCode, _ ->
-                    if (keyCode == KeyEvent.KEYCODE_BACK) {
-                        false
-                    } else false
-                }
-                dialog?.window?.let { wd->
-                    wd.setGravity(Gravity.CENTER)
-                    val lp = wd.attributes
-                    lp.width = ScreenUtils.getScreenWidth()
-                    wd.attributes = lp
-                }
-            }
-        }
-
-    }
 
 
 }

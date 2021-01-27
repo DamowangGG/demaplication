@@ -9,7 +9,6 @@ import android.os.Build
 import android.text.TextUtils
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
-import com.blankj.utilcode.util.CollectionUtils
 import com.blankj.utilcode.util.Utils
 import java.io.File
 import java.io.FileNotFoundException
@@ -17,8 +16,8 @@ import java.io.IOException
 
 object UpdateManager {
 
-    val apkDir = Utils.getApp().filesDir.path + "/download/apk/"
-    val INSTALL_PACKAGES_REQUESTCODE = 666
+    val apkDir = Utils.getApp().cacheDir.absolutePath + "/download/apk/"
+    private const val REQUEST = 36
     var updateBean:UpdateBean? = null
 
     fun installApp(context: Context, appFile: File): Boolean {
@@ -39,7 +38,7 @@ object UpdateManager {
         try {
             val intent = getInstallAppIntent(activity, appFile)
             if (activity!!.packageManager.queryIntentActivities(intent, 0).size > 0) {
-                activity.startActivityForResult(intent, INSTALL_PACKAGES_REQUESTCODE)
+                activity.startActivityForResult(intent, REQUEST)
             }
             return true
         } catch (e: Exception) {
@@ -55,18 +54,14 @@ object UpdateManager {
 
     fun getInstallAppIntent(context: Context?, appFile: File): Intent? {
         try {
-            val intent =
-                Intent(Intent.ACTION_VIEW)
+            val intent = Intent(Intent.ACTION_VIEW)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 //区别于 FLAG_GRANT_READ_URI_PERMISSION 跟 FLAG_GRANT_WRITE_URI_PERMISSION，
                 // URI权限会持久存在即使重启，直到明确的用 revokeUriPermission(Uri, int) 撤销。
                 // 这个flag只提供可能持久授权。但是接收的应用必须调用ContentResolver的takePersistableUriPermission(Uri, int)方法实现
                 intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
-                val fileUri = FileProvider.getUriForFile(
-                    context!!,
-                    context.packageName + ".provider", appFile
-                )
+                val fileUri = FileProvider.getUriForFile(context!!, context.packageName + ".provider", appFile)
                 intent.setDataAndType(fileUri, "application/vnd.android.package-archive")
             } else {
                 try {
@@ -111,7 +106,7 @@ object UpdateManager {
     fun getInstallApkPath(context: Context): File? {
         val remoteVersion = getNewApkVersion()
         return if (!TextUtils.isEmpty(remoteVersion)) {
-            val temp = File(context.externalCacheDir!!.absolutePath)
+            val temp = File(apkDir)
             if (!temp.exists()) temp.mkdirs()
             File(temp.path, "app_$remoteVersion.apk")
         } else {
@@ -122,7 +117,7 @@ object UpdateManager {
     fun getTempApkPath(context: Context): File? {
         val remoteVersion = getNewApkVersion()
         return if (!TextUtils.isEmpty(remoteVersion)) {
-            val temp = File(context.externalCacheDir!!.absolutePath)
+            val temp = File(apkDir)
             if (!temp.exists()) temp.mkdirs()
             File(temp.path, "app_" + remoteVersion + "_temp.apk")
         } else {

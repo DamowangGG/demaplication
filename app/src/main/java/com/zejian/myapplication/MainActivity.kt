@@ -21,6 +21,9 @@ import com.zejian.myapplication.ui.GoogleRocketActivity
 import com.zejian.myapplication.ui.ScrollingActivity
 import com.zejian.myapplication.ui.UserActivity
 import com.zejian.myapplication.ui.loading.Loading
+import com.zejian.myapplication.ui.update.UpdateBean
+import com.zejian.myapplication.ui.update.UpdateDialog
+import com.zejian.myapplication.ui.update.UpdateManager
 import com.zejian.myapplication.widget.SvgaPlayer
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,6 +31,7 @@ class MainActivity : BaseActivity() {
 
     val mHandler = Handler()
     val mPlayer:SvgaPlayer by lazy { SvgaPlayer(this) }
+    val aplUrl = "https:\\/\\/xmplp.oss-cn-hangzhou.aliyuncs.com\\/ymTest\\/yinmai_109.apk"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +61,15 @@ class MainActivity : BaseActivity() {
             startActivity(Intent(this,Main2Activity::class.java))
         }
         button4.setOnClickListener {
-            startActivity(Intent(this,EmojiActivity::class.java))
+            val dialog = UpdateDialog()
+            val updateBean = UpdateBean()
+            updateBean.apkUrl = aplUrl
+            updateBean.serverVersionName = "1.2.0"
+            updateBean.updateMsg = "sflskdf"
+            updateBean.isForce = false
+            dialog.updateBean = updateBean
+            UpdateManager.updateBean = updateBean
+            dialog.show(supportFragmentManager,"5")
         }
         button5.setOnClickListener {
             startActivity(Intent(this,VP2Activity::class.java))
