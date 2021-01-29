@@ -13,6 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.zejian.myapplication.base.BaseActivity
+import com.zejian.myapplication.R
 
 class Main2Activity : BaseActivity() {
 
