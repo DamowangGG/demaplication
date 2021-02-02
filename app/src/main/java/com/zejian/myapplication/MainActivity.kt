@@ -17,6 +17,7 @@ import com.zejian.myapplication.emoji.EmojiActivity
 import com.zejian.myapplication.permission.PermissionHelper
 import com.zejian.myapplication.swipecard.TanTanActivity
 import com.zejian.myapplication.taluo.VP2Activity
+import com.zejian.myapplication.ui.CircularActivity
 import com.zejian.myapplication.ui.GoogleRocketActivity
 import com.zejian.myapplication.ui.ScrollingActivity
 import com.zejian.myapplication.ui.UserActivity
@@ -80,6 +81,9 @@ class MainActivity : BaseActivity() {
             repeat(6){
                 mPlayer.play("http://s-y.oss-cn-hangzhou.aliyuncs.com/s-y/gift/91b9afc2-c62e-45bf-8db3-9aacbc413962.svga")
             }
+        }
+        circularImageView.setOnClickListener {
+            startActivity(Intent(this,CircularActivity::class.java))
         }
         loading.setOnClickListener {
             startActivity(Intent(this,UserActivity::class.java))

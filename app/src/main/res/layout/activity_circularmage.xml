@@ -1,0 +1,103 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <com.zejian.myapplication.view.coloredshadow.ShadowImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="16dp"
+                app:srcCompat="@mipmap/pic4" />
+            <com.zejian.myapplication.view.multiimage.MultiImageView
+                android:id="@+id/multiImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="16dp"/>
+
+            <xyz.schwaab.avvylib.AvatarView
+                android:id="@+id/avatarView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@mipmap/pic4"
+                app:avvy_border_color="#885599"
+                app:avvy_border_highlight_color="#ff5900"
+                app:avvy_border_highlight_color_end="#bf15bc"
+                app:avvy_border_thickness="2dp"
+                app:avvy_border_thickness_highlight="3dp"
+                app:avvy_distance_to_border="5dp"
+                app:avvy_highlighted="true"
+                app:avvy_loading_arches="5"
+                app:avvy_loading_arches_degree_area="90"
+
+                app:avvy_show_badge="true"
+                app:avvy_badge_radius="18dp"
+                app:avvy_badge_stroke_width="2dp"
+                app:avvy_badge_stroke_color="#FFFFFF"
+                app:avvy_badge_position="BOTTOM_RIGHT"  />
+        </LinearLayout>
+
+            <com.zejian.myapplication.view.CircularImageView
+                android:id="@+id/circularImageView"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="start"
+                android:src="@mipmap/pic5"
+                android:scaleType="centerCrop"
+                app:civ_border="true"
+                app:civ_border_color="#3f51b5"
+                app:civ_border_width="8dp"
+                app:civ_shadow="true"
+                app:civ_shadow_color="#3f51b5"
+                app:civ_shadow_radius="6dp" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <SeekBar
+            android:id="@+id/seekBarBorderWidth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="40"
+            android:progress="8" />
+
+        <SeekBar
+            android:id="@+id/seekBarShadowRadius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:max="15"
+            android:progress="6" />
+
+        <com.larswerkman.lobsterpicker.sliders.LobsterShadeSlider
+            android:id="@+id/shadeSlider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+        </com.larswerkman.lobsterpicker.sliders.LobsterShadeSlider>
+
+    </LinearLayout>
+
+</LinearLayout>
