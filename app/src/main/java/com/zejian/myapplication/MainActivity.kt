@@ -25,6 +25,7 @@ import com.zejian.myapplication.ui.loading.Loading
 import com.zejian.myapplication.ui.update.UpdateBean
 import com.zejian.myapplication.ui.update.UpdateDialog
 import com.zejian.myapplication.ui.update.UpdateManager
+import com.zejian.myapplication.view.xiedetextview.SlantTextActivity
 import com.zejian.myapplication.widget.SvgaPlayer
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -94,6 +95,9 @@ class MainActivity : BaseActivity() {
             mHandler.postDelayed({
                 dialog.showSuccess("上传成功")
             },3000)
+        }
+        xiede.setOnClickListener {
+            startActivity(Intent(this,SlantTextActivity::class.java))
         }
         motionLayout.setOnClickListener {
             startActivity(Intent(this,MotionActivity::class.java))
