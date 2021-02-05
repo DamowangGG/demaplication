@@ -21,15 +21,17 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="true"
-        android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.CircularActivity"/>
-        <activity android:name=".ui.Main234Activity"/>
+        <activity android:name=".ui.BubbleActivity"></activity>
+        <activity android:name=".view.xiedetextview.SlantTextActivity" />
+        <activity android:name=".ui.CircularActivity" />
+        <activity android:name=".ui.Main234Activity" />
         <activity android:name=".ui.UserActivity" />
         <activity android:name=".ui.GoogleRocketActivity" />
         <activity
@@ -61,16 +63,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
-            android:grantUriPermissions="true" >
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths_public" />
         </provider>
-        <service android:name=".ui.update.UpdateService"/>
+
+        <service android:name=".ui.update.UpdateService" />
         <service android:name=".NotificationService" />
     </application>
 
