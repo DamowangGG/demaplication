@@ -2,8 +2,14 @@ package com.zejian.myapplication.ui
 
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.SeekBar
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.larswerkman.lobsterpicker.OnColorListener
 import com.larswerkman.lobsterpicker.sliders.LobsterShadeSlider
 import com.zejian.myapplication.R
@@ -32,10 +38,10 @@ class CircularActivity : BaseActivity() {
         //multiImage
         multiImage.shape = MultiImageView.Shape.CIRCLE
         multiImage.rectCorners = dp2px(10f).toInt()
-        multiImage.addImage(BitmapFactory.decodeResource(resources,R.mipmap.pic3))
-        multiImage.addImage(BitmapFactory.decodeResource(resources,R.mipmap.pic4))
-        multiImage.addImage(BitmapFactory.decodeResource(resources,R.mipmap.pic5))
-        multiImage.addImage(BitmapFactory.decodeResource(resources,R.mipmap.pic6))
+        multiImage.addImage(BitmapFactory.decodeResource(resources, R.mipmap.pic3))
+        multiImage.addImage(BitmapFactory.decodeResource(resources, R.mipmap.pic4))
+        multiImage.addImage(BitmapFactory.decodeResource(resources, R.mipmap.pic5))
+        multiImage.addImage(BitmapFactory.decodeResource(resources, R.mipmap.pic6))
 
         //avatarView
         avatarView.apply {
@@ -49,6 +55,31 @@ class CircularActivity : BaseActivity() {
             showBadge = true
             badgePosition = BadgePosition.TOP_LEFT
         }
+
+
+        Glide.with(image).load("https://y-m.oss-cn-shanghai.aliyuncs.com/user/123009/16126860683952").listener(object : RequestListener<Drawable?> {
+            override fun onLoadFailed(
+                e: GlideException?,
+                model: Any,
+                target: Target<Drawable?>,
+                isFirstResource: Boolean
+            ): Boolean {
+                return false
+            }
+
+            override fun onResourceReady(
+                resource: Drawable?,
+                model: Any,
+                target: Target<Drawable?>,
+                dataSource: DataSource,
+                isFirstResource: Boolean
+            ): Boolean {
+
+                return false
+            }
+        }).into(image)
+
+
     }
 
     //region Extensions

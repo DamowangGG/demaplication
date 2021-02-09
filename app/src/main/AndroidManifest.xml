@@ -28,7 +28,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.BubbleActivity"></activity>
+        <activity android:name=".ui.CplusActivity"/>
+        <activity android:name=".ui.BubbleActivity" />
         <activity android:name=".view.xiedetextview.SlantTextActivity" />
         <activity android:name=".ui.CircularActivity" />
         <activity android:name=".ui.Main234Activity" />

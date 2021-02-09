@@ -17,10 +17,7 @@ import com.zejian.myapplication.emoji.EmojiActivity
 import com.zejian.myapplication.permission.PermissionHelper
 import com.zejian.myapplication.swipecard.TanTanActivity
 import com.zejian.myapplication.taluo.VP2Activity
-import com.zejian.myapplication.ui.CircularActivity
-import com.zejian.myapplication.ui.GoogleRocketActivity
-import com.zejian.myapplication.ui.ScrollingActivity
-import com.zejian.myapplication.ui.UserActivity
+import com.zejian.myapplication.ui.*
 import com.zejian.myapplication.ui.loading.Loading
 import com.zejian.myapplication.ui.update.UpdateBean
 import com.zejian.myapplication.ui.update.UpdateDialog
@@ -104,6 +101,9 @@ class MainActivity : BaseActivity() {
         }
         googleRocket.setOnClickListener {
             startActivity(Intent(this,GoogleRocketActivity::class.java))
+        }
+        jni.setOnClickListener {
+            startActivity(Intent(this,CplusActivity::class.java))
         }
         permissionFun()
 
