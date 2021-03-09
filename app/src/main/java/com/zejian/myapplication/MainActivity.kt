@@ -100,7 +100,7 @@ class MainActivity : BaseActivity() {
             startActivity(Intent(this,MotionActivity::class.java))
         }
         googleRocket.setOnClickListener {
-            startActivity(Intent(this,GoogleRocketActivity::class.java))
+            startActivity(Intent(this,Main234Activity::class.java))
         }
         jni.setOnClickListener {
             startActivity(Intent(this,CplusActivity::class.java))

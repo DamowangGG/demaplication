@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 
 import com.wheel.R;
 import com.wheel.listener.CustomListener;
-import com.wheel.datepicker.listener.OnOptionsSelectChangeListener;
-import com.wheel.datepicker.listener.OnOptionsSelectListener;
-import com.wheel.datepicker.listener.OnTimeSelectChangeListener;
-import com.wheel.datepicker.listener.OnTimeSelectListener;
+import com.wheel.listener.OnOptionsSelectChangeListener;
+import com.wheel.listener.OnOptionsSelectListener;
+import com.wheel.listener.OnTimeSelectChangeListener;
+import com.wheel.listener.OnTimeSelectListener;
 import com.wheel.view.WheelView;
 
 import java.util.Calendar;
@@ -70,11 +70,11 @@ public class PickerOptions {
 
     public PickerOptions(int buildType) {
         if (buildType == TYPE_PICKER_OPTIONS) {
-            layoutRes = R.layout.pickerview_options;
+            layoutRes = R.layout.picker_options;
         } else if(buildType == TYPE_PICKER_OPTIONS_SMALL) {
-            layoutRes = R.layout.pickerview_options_small;
+            layoutRes = R.layout.picker_options_small;
         } else {
-            layoutRes = R.layout.pickerview_time;
+            layoutRes = R.layout.picker_time;
         }
     }
 

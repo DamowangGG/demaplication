@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.zejian.myapplication"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -68,6 +68,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation files('libs/qq_sdk_r6199_lite.jar')
+    implementation 'androidx.multidex:multidex:2.0.1'
     //微信sdk
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.6.4'
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.6.0'
@@ -84,6 +85,7 @@ dependencies {
 //    implementation  'com.scwang.smart:refresh-header-classics:2.0.2'    //经典刷新头
 //    implementation  'com.scwang.smart:refresh-footer-classics:2.0.2'    //经典加载
     implementation project(':bubblepicker')
+    implementation project(':wheel')
     implementation 'com.github.yyued:SVGAPlayer-Android:2.5.12'
     implementation 'com.lxj:xpopup:2.2.13'
     implementation 'org.greenrobot:eventbus:3.1.1'

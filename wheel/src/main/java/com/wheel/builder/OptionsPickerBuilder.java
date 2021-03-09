@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 
 import com.wheel.configure.PickerOptions;
 import com.wheel.listener.CustomListener;
-import com.wheel.datepicker.listener.OnOptionsSelectChangeListener;
-import com.wheel.datepicker.listener.OnOptionsSelectListener;
+import com.wheel.listener.OnOptionsSelectChangeListener;
+import com.wheel.listener.OnOptionsSelectListener;
 import com.wheel.view.OptionsPickerView;
 import com.wheel.view.WheelView;
 

@@ -13,4 +13,5 @@
     <color name="text888">#888888</color>
     <color name="text">#333333</color>
     <color name="color_primary">#c5a2a3</color>
+    <color name="transparent">#00000000</color>
 </resources>

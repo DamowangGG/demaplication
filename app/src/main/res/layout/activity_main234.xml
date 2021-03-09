@@ -7,6 +7,7 @@
     tools:context=".ui.Main234Activity">
 
     <TextView
+        android:id="@+id/SHOW_ALL"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
